@@ -1,0 +1,26 @@
+{
+  "name": "esp32",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node build/index.js",
+    "build": "node esbuild.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "esbuild": "0.25.5",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.8"
+  }
+}

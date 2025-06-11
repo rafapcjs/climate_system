@@ -33,6 +33,11 @@ app.get('/sensores/ultimo', async (_req, res) => {
 });
 
 
+app.get('/'), async (_req, res) => {
+
+
+  res.json({ status: 'ok', message: 'Servidor funcionando' });
+}
 // Ruta POST que guarda en la BD
 app.post('/sensores', async (req, res) => {
   try {

@@ -1,16 +1,19 @@
 {
   "name": "esp32",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "API REST que recibe lecturas del ESP32",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "start": "node server.js",
-    "dev": "node build/index.js",
-    "build": "node esbuild.config.js"
+    "start": "node src/index.js",        
+    "dev": "node src/index.js",          
+    "build": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
     "dotenv": "^16.5.0",

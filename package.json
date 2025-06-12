@@ -7,8 +7,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "node src/index.js",        
-    "dev": "node src/index.js",          
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
     "build": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.js"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "pg": "^8.16.0"

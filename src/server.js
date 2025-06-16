@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json());  // Asegúrate de que el servidor puede parsear JSON
 
 // —— Función para determinar el estado de la temperatura —— 
 function estadoTemperatura(temp) {
@@ -86,6 +86,7 @@ app.post('/sensores', async (req, res) => {
       humedad_suelo_pct
     } = req.body;
 
+    // Verificar si todos los parámetros requeridos están presentes
     if (
       temperatura_C === undefined ||
       estado_temperatura === undefined ||
@@ -98,6 +99,7 @@ app.post('/sensores', async (req, res) => {
       return res.status(400).json({ status: 'error', message: 'Faltan datos en la solicitud' });
     }
 
+    // Convertir los valores a números y verificar que sean válidos
     const temperatura = parseFloat(temperatura_C);
     const humedad = parseFloat(humedad_relativa_pct);
     const humedad_suelo = parseFloat(humedad_suelo_pct);
@@ -106,6 +108,7 @@ app.post('/sensores', async (req, res) => {
       return res.status(400).json({ status: 'error', message: 'Datos numéricos inválidos' });
     }
 
+    // Insertar los datos en la base de datos
     const text = `
       INSERT INTO sensor_readings
         (temperatura, humedad, humedad_suelo, calidad_aire, estado_agua, estado_temperatura, estado_humedad)
@@ -116,6 +119,7 @@ app.post('/sensores', async (req, res) => {
 
     const { rows } = await pool.query(text, values);
 
+    // Responder con el registro recién insertado
     res.json({
       status: 'ok',
       saved: true,

@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); 
 const express = require('express');
 const cors = require('cors');
 const pool = require('./db');  // tu configuración de pg.Pool
@@ -69,7 +69,7 @@ app.get('/sensores/ultimo', async (_req, res) => {
     res.json(resultado);
   } catch (err) {
     console.error('💥 DB query error', err);
-    res.status(500).json({ status: 'error', message: 'DB query failed' });
+    res.status(500).json({ status: 'error', message: `DB query failed: ${err.message}` });
   }
 });
 
@@ -108,13 +108,7 @@ app.post('/sensores', async (req, res) => {
 
     const text = `
       INSERT INTO sensor_readings
-        (temperatura,
-         humedad,
-         humedad_suelo,
-         calidad_aire,
-         estado_agua,
-         estado_temperatura,
-         estado_humedad)
+        (temperatura, humedad, humedad_suelo, calidad_aire, estado_agua, estado_temperatura, estado_humedad)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id, created_at
     `;
@@ -129,7 +123,7 @@ app.post('/sensores', async (req, res) => {
     });
   } catch (err) {
     console.error('💥 DB insert error', err);
-    res.status(500).json({ status: 'error', message: 'DB insert failed' });
+    res.status(500).json({ status: 'error', message: `DB insert failed: ${err.message}` });
   }
 });
 
